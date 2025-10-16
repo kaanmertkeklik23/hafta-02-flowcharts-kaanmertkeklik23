@@ -1,0 +1,30 @@
+digraph ATM_Withdrawal {
+    rankdir=LR;
+    node [shape=box, style=rounded, fontname="Arial"];
+
+    Start [label="Başla", shape=circle, style=filled, fillcolor=lightgray];
+    InsertCard [label="Kart Tak"];
+    EnterPIN [label="PIN Gir"];
+    VerifyPIN [label="PIN Doğrula"];
+    InvalidPIN [label="PIN Hatalı\nTekrar Dene", shape=diamond, style=filled, fillcolor=lightpink];
+    SelectWithdraw [label="Para Çekme Seç"];
+    EnterAmount [label="Tutar Gir"];
+    CheckBalance [label="Bakiye Yeterli mi?", shape=diamond];
+    InsufficientFunds [label="Yetersiz Bakiye", shape=box, style=filled, fillcolor=orange];
+    DispenseCash [label="Parayı Ver"];
+    EjectCard [label="Kartı İade Et"];
+    End [label="Bitti", shape=doublecircle, style=filled, fillcolor=lightgray];
+
+    // Bağlantılar
+    Start -> InsertCard -> EnterPIN -> VerifyPIN;
+    VerifyPIN -> InvalidPIN [label="Hatalı"];
+    InvalidPIN -> EnterPIN;
+
+    VerifyPIN -> SelectWithdraw [label="Doğru"];
+    SelectWithdraw -> EnterAmount -> CheckBalance;
+    CheckBalance -> InsufficientFunds [label="Hayır"];
+    InsufficientFunds -> EnterAmount;
+
+    CheckBalance -> DispenseCash [label="Evet"];
+    DispenseCash -> EjectCard -> End;
+}
