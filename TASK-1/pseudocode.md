@@ -1,36 +1,40 @@
-digraph ATM_Para_Cekme {
-    rankdir=TB;
-    node [shape=box, style=rounded];
 
-    Start [label="Başla", shape=ellipse, style=filled, fillcolor=lightgreen];
-    InsertCard [label="Kart takıldı mı?"];
-    EnterPIN [label="PIN gir"];
-    CheckPIN [label="PIN doğru mu?", shape=diamond];
-    RetryPIN [label="PIN tekrar gir"];
-    ExceedAttempts [label="3 Hatalı giriş - Kart iade", shape=box, style=filled, fillcolor=lightcoral];
-    SelectAmount [label="Çekilecek miktarı gir"];
-    CheckBalance [label="Yeterli bakiye var mı?", shape=diamond];
-    DenyWithdrawal [label="Yetersiz bakiye", style=filled, fillcolor=lightcoral];
-    DispenseCash [label="Parayı ver"];
-    EjectCard [label="Kartı iade et"];
-    End [label="Bitti", shape=ellipse, style=filled, fillcolor=lightgreen];
 
-    Start -> InsertCard;
-    InsertCard -> EnterPIN;
-    EnterPIN -> CheckPIN;
+Kaan Mert Keklik 
+Öğr No:250541053
+ATMDEN PARA ÇEKME ALGORİTMASI SÖZDE KODLAR
 
-    CheckPIN -> SelectAmount [label="Evet"];
-    CheckPIN -> RetryPIN [label="Hayır"];
+Başla
 
-    RetryPIN -> CheckPIN;
-    CheckPIN -> ExceedAttempts [label="3. Hatalı Giriş"];
+Kart takıldı mı?
+    Evetse devam et
+    Hayırsa bekle
 
-    SelectAmount -> CheckBalance;
-    CheckBalance -> DispenseCash [label="Evet"];
-    CheckBalance -> DenyWithdrawal [label="Hayır"];
+PIN_kodu_gir
+PIN_dogrulama_hakki = 3
 
-    DispenseCash -> EjectCard;
-    DenyWithdrawal -> EjectCard;
-    ExceedAttempts -> End;
-    EjectCard -> End;
-}
+PIN doğru mu?
+    Evetse devam et
+    Hayırsa
+        PIN_dogrulama_hakki -= 1
+        PIN_dogrulama_hakki > 0 ise tekrar PIN iste
+        Aksi halde
+            "Kart bloke edildi" mesajı göster
+            Kartı iade et
+            Bitir
+
+Çekilecek_miktarı_gir
+
+Eğer Çekilecek_miktar > Bakiye ise
+    "Yetersiz bakiye" mesajı göster
+    Kartı iade et
+    Bitir
+
+Aksi halde
+    Bakiyeden Çekilecek_miktar düş
+    Nakit ver
+    "İşlem başarılı" mesajı göster
+    Kartı iade et
+
+Bitir
+
