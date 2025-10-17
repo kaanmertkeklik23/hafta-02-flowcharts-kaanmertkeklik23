@@ -1,0 +1,40 @@
+digraph DersKayitSistemi {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+
+    Start [label="Başla", shape=oval];
+    InputName [label="Ad Soyad gir", shape=parallelogram];
+    InputNo [label="Öğrenci No gir", shape=parallelogram];
+    ShowCourses [label="Mevcut dersleri listele", shape=box];
+    InputCourse [label="Ders seç ('q' ile bitir)", shape=parallelogram];
+    CheckQuit [label="Ders = 'q' ?", shape=diamond];
+    ValidateCourse [label="Ders geçerli mi?", shape=diamond];
+    InvalidCourse [label="Geçersiz ders!", shape=box];
+    AlreadySelected [label="Ders zaten seçilmiş!", shape=box];
+    AddCourse [label="Ders eklendi", shape=box];
+    CheckEmpty [label="Seçilen ders var mı?", shape=diamond];
+    NoCourses [label="Hiç ders seçmediniz", shape=box];
+    ShowSelected [label="Dersler listelendi\nKayıt tamamlandı", shape=box];
+    End [label="Bitir", shape=oval];
+
+    Start -> InputName -> InputNo -> ShowCourses -> InputCourse;
+    InputCourse -> CheckQuit;
+    CheckQuit -> InputCourse [label="Hayır"];
+    CheckQuit -> CheckEmpty [label="Evet"];
+
+    CheckEmpty -> NoCourses [label="Hayır"];
+    NoCourses -> End;
+
+    CheckEmpty -> ShowSelected [label="Evet"];
+    ShowSelected -> End;
+
+    InputCourse -> ValidateCourse;
+    ValidateCourse -> InvalidCourse [label="Hayır"];
+    InvalidCourse -> InputCourse;
+
+    ValidateCourse -> AlreadySelected [label="Evet ama zaten var"];
+    AlreadySelected -> InputCourse;
+
+    ValidateCourse -> AddCourse [label="Evet"];
+    AddCourse -> InputCourse;
+}
