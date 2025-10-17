@@ -1,3 +1,5 @@
+Kaan Mert Keklik
+Öğr No : 250541053
 
 
 Bu sistem, bir hastanın hastaneden randevu alabilmesi için gerekli olan bilgileri adım adım alarak, bilgilerin eksiksiz olduğundan emin olur ve ardından randevuyu oluşturur.
