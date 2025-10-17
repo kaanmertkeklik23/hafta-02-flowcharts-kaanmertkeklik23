@@ -1,7 +1,7 @@
 İsim - Soy isim Kaan Mert Keklik
 Öğrenci No:250541053
 
-sistemin kısa açıklaması (maks. 5-6 satır)
+
 Bu sistem, kullanıcının bir ATM aracılığıyla para çekmesini simüle eden basit bir algoritmadır. Akış şu şekilde işler:
 
 Başlangıç: Sistem çalışmaya başlar.
