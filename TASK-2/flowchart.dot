@@ -1,0 +1,36 @@
+digraph AlisverisSepeti {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+
+    Start [label="Başla", shape=oval];
+    Init [label="Sepet oluştur\nToplam = 0", shape=box];
+    InputProduct [label="Ürün adı gir ('q' ile çık)", shape=parallelogram];
+    CheckQuit [label="Ürün = 'q' ?", shape=diamond];
+    InputPrice [label="Fiyat gir", shape=parallelogram];
+    AddToCart [label="Ürünü sepete ekle\nToplamı güncelle", shape=box];
+    CheckCartEmpty [label="Sepet boş mu?", shape=diamond];
+    ShowEmpty [label="Sepetiniz boş", shape=box];
+    ShowCart [label="Sepeti ve toplamı göster", shape=box];
+    ConfirmPurchase [label="Satın alma onayı al", shape=parallelogram];
+    CheckConfirm [label="Cevap = 'evet'?", shape=diamond];
+    PurchaseDone [label="Satın alma başarılı", shape=box];
+    PurchaseCancelled [label="Satın alma iptal edildi", shape=box];
+    End [label="Bitir", shape=oval];
+
+    // Akışlar
+    Start -> Init -> InputProduct;
+    InputProduct -> CheckQuit;
+    CheckQuit -> InputPrice [label="Hayır"];
+    InputPrice -> AddToCart -> InputProduct;
+
+    CheckQuit -> CheckCartEmpty [label="Evet"];
+    CheckCartEmpty -> ShowEmpty [label="Evet"];
+    ShowEmpty -> End;
+
+    CheckCartEmpty -> ShowCart [label="Hayır"];
+    ShowCart -> ConfirmPurchase -> CheckConfirm;
+    CheckConfirm -> PurchaseDone [label="Evet"];
+    CheckConfirm -> PurchaseCancelled [label="Hayır"];
+    PurchaseDone -> End;
+    PurchaseCancelled -> End;
+}
