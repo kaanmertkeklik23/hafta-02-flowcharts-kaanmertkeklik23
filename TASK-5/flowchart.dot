@@ -1,0 +1,42 @@
+digraph AkilliEvGuvenlik {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+
+    Start [label="Başla", shape=oval];
+    AskStart [label="Sistemi başlatmak istiyor musunuz? (evet/hayır)", shape=parallelogram];
+    CheckStart [label="Cevap = evet?", shape=diamond];
+    Inactive [label="Sistem pasif.\nGüvenlik devrede değil.", shape=box];
+    Active [label="Sistem aktif\nİzleniyor...", shape=box];
+    DetectMotion [label="Hareket algılandı mı?", shape=diamond];
+    NoMotion [label="Her şey normal", shape=box];
+    MotionDetected [label="Hareket algılandı!", shape=box];
+    StartAlarm [label="Alarm çalıyor\nBildirim gönderiliyor\nKamera açılıyor", shape=box];
+    EnterPassword [label="Şifre girin", shape=parallelogram];
+    CheckPassword [label="Şifre doğru mu?", shape=diamond];
+    StopAlarm [label="Alarm durduruldu", shape=box];
+    WrongPassword [label="Yanlış şifre!\nAlarm devam ediyor", shape=box];
+    Wait [label="Bekle (5 sn)", shape=box];
+    Loop [label="↺", shape=circle, width=0.3];
+
+    End [label="Bitir", shape=oval];
+
+    Start -> AskStart -> CheckStart;
+    CheckStart -> Inactive [label="Hayır"];
+    Inactive -> End;
+
+    CheckStart -> Active [label="Evet"];
+    Active -> DetectMotion;
+
+    DetectMotion -> NoMotion [label="Hayır"];
+    NoMotion -> Wait -> Loop;
+    Loop -> DetectMotion;
+
+    DetectMotion -> MotionDetected [label="Evet"];
+    MotionDetected -> StartAlarm -> EnterPassword -> CheckPassword;
+
+    CheckPassword -> StopAlarm [label="Evet"];
+    StopAlarm -> Wait -> Loop;
+
+    CheckPassword -> WrongPassword [label="Hayır"];
+    WrongPassword -> Wait -> Loop;
+}
