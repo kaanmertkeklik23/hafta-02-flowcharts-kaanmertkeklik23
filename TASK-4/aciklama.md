@@ -1,4 +1,5 @@
-
+Kaan Mert Keklik
+Öğr No:250541053
 
 Öğrenciden Adı ve Öğrenci Numarası alınır.
 
