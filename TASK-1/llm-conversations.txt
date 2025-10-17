@@ -1,0 +1,87 @@
+İçeriğe geç
+Şunu dedin:
+atmden para çekme algoritması ile ilgili bir pseudocode sözde kod yazabilir misin ?
+ChatGPT:
+Elbette! Aşağıda basit bir ATM'den para çekme algoritması için pseudocode (sözde kod) örneği bulabilirsin. Bu algoritma, kullanıcının bakiyesi olup olmadığını kontrol eder, girilen tutarın geçerli olup olmadığını denetler ve para çekme işlemini gerçekleştirir.
+
+💳 ATM Para Çekme Pseudocode
+Başla
+
+Değişkenler:
+    bakiye ← 5000  // Başlangıç bakiyesi
+    cekilecekTutar ← 0
+
+Ekrana yaz "Lütfen çekmek istediğiniz tutarı giriniz:"
+cekilecekTutar ← kullanıcıdan giriş al
+
+Eğer cekilecekTutar ≤ 0 ise
+    Ekrana yaz "Geçersiz tutar girdiniz. Lütfen pozitif bir tutar girin."
+Aksi halde eğer cekilecekTutar > bakiye ise
+    Ekrana yaz "Yetersiz bakiye."
+Aksi halde
+    bakiye ← bakiye - cekilecekTutar
+    Ekrana yaz cekilecekTutar & " TL başarıyla çekildi."
+    Ekrana yaz "Kalan bakiye: " & bakiye
+Son
+
+Bitir
+📝 Açıklamalar:
+bakiye: Kullanıcının ATM’deki mevcut parası.
+
+cekilecekTutar: Kullanıcının çekmek istediği miktar.
+
+Giriş kontrolü yapılır: Negatif veya sıfır tutarlar reddedilir.
+
+Yetersiz bakiye kontrolü yapılır.
+
+İşlem başarılıysa bakiye güncellenir ve bilgi verilir.
+
+İstersen bu pseudocode'u Python gibi bir programlama diline de çevirebilirim. Yardımcı olayım mı?
+
+Şunu dedin:
+bunun dot kodlarını yazabilr misin
+ChatGPT:
+Elbette! ATM para çekme algoritmasını DOT dili (Graphviz) kullanarak bir akış diyagramı (flowchart) haline getirebiliriz. DOT dili, özellikle algoritmaların görsel temsili için yaygın olarak kullanılır.
+
+💡 DOT Kodu: ATM Para Çekme Akış Diyagramı
+digraph ATM_Para_Cekme {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+
+    Start [label="Başla", shape=oval];
+    Input [label="Çekilecek tutarı gir", shape=parallelogram];
+    CheckNegative [label="Tutar ≤ 0 ?", shape=diamond];
+    InvalidAmount [label="Geçersiz tutar!", shape=box];
+    CheckBalance [label="Tutar > Bakiye ?", shape=diamond];
+    Insufficient [label="Yetersiz bakiye!", shape=box];
+    Withdraw [label="Para çekiliyor\nBakiye güncelleniyor", shape=box];
+    ShowSuccess [label="Para başarıyla çekildi\nYeni bakiye göster", shape=box];
+    End [label="Bitir", shape=oval];
+
+    // Akış bağlantıları
+    Start -> Input;
+    Input -> CheckNegative;
+
+    CheckNegative -> InvalidAmount [label="Evet"];
+    InvalidAmount -> End;
+
+    CheckNegative -> CheckBalance [label="Hayır"];
+    CheckBalance -> Insufficient [label="Evet"];
+    Insufficient -> End;
+
+    CheckBalance -> Withdraw [label="Hayır"];
+    Withdraw -> ShowSuccess;
+    ShowSuccess -> End;
+}
+🔧 Görselleştirmek İçin:
+DOT dosyasını .dot uzantısıyla kaydedip aşağıdaki komutla .png veya .pdf formatına çevirebilirsin:
+
+dot -Tpng atm_para_cekme.dot -o atm_para_cekme.png
+İstersen bunu senin için görselleştirebilirim de. Dilersen “görselini göster” diye belirtmen yeterli.
+
+
+
+
+Ses
+Dosya seçilmediDosya seçilmedi
+ChatGPT hata yapabilir. Önemli bilgileri kontrol edin.
