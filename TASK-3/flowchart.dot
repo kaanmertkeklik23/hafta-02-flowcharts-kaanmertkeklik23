@@ -1,0 +1,23 @@
+digraph RandevuSistemi {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+
+    Start [label="Başla", shape=oval];
+    InputName [label="Ad Soyad gir", shape=parallelogram];
+    InputTC [label="TC Kimlik No gir", shape=parallelogram];
+    InputBolum [label="Bölüm seç", shape=parallelogram];
+    InputDate [label="Tarih gir (GG/AA/YYYY)", shape=parallelogram];
+    InputTime [label="Saat gir (HH:MM)", shape=parallelogram];
+    CheckEmpty [label="Her bilgi girildi mi?", shape=diamond];
+    Error [label="Eksik bilgi var!\nTekrar deneyin.", shape=box];
+    Save [label="Randevu kaydedildi", shape=box];
+    ShowInfo [label="Randevu bilgileri göster", shape=box];
+    End [label="Bitir", shape=oval];
+
+    Start -> InputName -> InputTC -> InputBolum -> InputDate -> InputTime;
+    InputTime -> CheckEmpty;
+    CheckEmpty -> Error [label="Hayır"];
+    Error -> End;
+    CheckEmpty -> Save [label="Evet"];
+    Save -> ShowInfo -> End;
+}
