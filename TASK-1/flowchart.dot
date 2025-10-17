@@ -1,0 +1,29 @@
+digraph ATM_Para_Cekme {
+    rankdir=TB;
+    node [shape=box, fontname="Arial"];
+
+    Start [label="Başla", shape=oval];
+    Input [label="Çekilecek tutarı gir", shape=parallelogram];
+    CheckNegative [label="Tutar ≤ 0 ?", shape=diamond];
+    InvalidAmount [label="Geçersiz tutar!", shape=box];
+    CheckBalance [label="Tutar > Bakiye ?", shape=diamond];
+    Insufficient [label="Yetersiz bakiye!", shape=box];
+    Withdraw [label="Para çekiliyor\nBakiye güncelleniyor", shape=box];
+    ShowSuccess [label="Para başarıyla çekildi\nYeni bakiye göster", shape=box];
+    End [label="Bitir", shape=oval];
+
+    // Akış bağlantıları
+    Start -> Input;
+    Input -> CheckNegative;
+
+    CheckNegative -> InvalidAmount [label="Evet"];
+    InvalidAmount -> End;
+
+    CheckNegative -> CheckBalance [label="Hayır"];
+    CheckBalance -> Insufficient [label="Evet"];
+    Insufficient -> End;
+
+    CheckBalance -> Withdraw [label="Hayır"];
+    Withdraw -> ShowSuccess;
+    ShowSuccess -> End;
+}
