@@ -1,5 +1,7 @@
 Kaan Mert Keklik
 Öğr No : 250541053
+
+
 Bu sistem, bir evdeki hareketleri izleyen ve güvenlik tehdidi algılandığında alarm sistemini devreye sokan akıllı bir güvenlik çözümüdür.
 
 🔹 İşleyiş Adımları:
@@ -27,3 +29,6 @@ Kullanıcıdan şifre istenir.
 Yanlışsa alarm çalmaya devam eder.
 
 Sistem sürekli bu döngüyü tekrarlar.
+
+
+Hocam çok teşekkür ederim sorunum çözüldü ödevi de çözüldüğü an paylaşmak istedim:) 
