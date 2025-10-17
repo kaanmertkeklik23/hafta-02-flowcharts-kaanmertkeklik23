@@ -1,4 +1,5 @@
-
+Kaan Mert Keklik
+250541053
 
 Bu sistem, kullanıcıların sanal bir alışveriş sepetine ürün eklemesini ve ardından alışverişi onaylamasını sağlayan basit bir akışla çalışır:
 
